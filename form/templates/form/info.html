@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Info.html{% endblock title %}</title>
+    <link rel="stylesheet" href="{% static "form/css/bootstrap.min.css" %}">
+    <script src="{% static "form\js\bootstrap.bundle.min.js" %}"></script>
+    <script src="{% static "form\js\bootstrap.min.js" %}"></script>
+</head>
+<body>
+
+    <div class="container p-4 border bg-light">
+        <h1 class="text-center">Info Details</h1>
+        <p class="float-end">Application NO: {{ info.id }}</p>
+
+        {% if info.profile_image %}
+            <img src="{{ info.profile_image.url }}" alt="Profile Image" class="img-fluid img-thumbnail float-end mt-4" style="width: 150px; height: 150px;">
+        {% endif %}
+
+        <p>Name: {{ info.name }}</p>
+        <p>Date of Birth: {{ info.dob | date:"j M, Y" }}</p>
+        <p>Gender: {{ info.gender }}</p>
+        <p>Locality: {{ info.city }}, {{ info.state }}-{{ info.pin }}</p>
+        <p>Mobile: {{ info.mobile }}</p>
+        <p>Email: {{ info.email }}</p>
+        <p>Preferred Job City: 
+            {% for city in info.job_city.all %}
+                {{ city.name }}{% if not forloop.last %}, {% endif %}
+            {% empty %}
+                No cities selected
+            {% endfor %}
+        </p>
+
+        {% if info.my_file %}
+            <p>Attachment: <a href="{{ info.my_file.url }}">Show File</a></p>
+        {% endif %}
+
+        <div class="text-center">
+            <a href="{% url "home" %}" class="btn btn-danger">Back</a>
+        </div>
+    </div>
+
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Base.html{% endblock title %}</title>
+    <link rel="stylesheet" href="{% static "form/css/bootstrap.min.css" %}">
+    <script src="{% static "form\js\bootstrap.bundle.min.js" %}"></script>
+    <script src="{% static "form\js\bootstrap.min.js" %}"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="text-center mt-3">
+            <h1>Django Form</h1>
+        </div>
+
+        <div class="row my-5">
+            <div class="col-md-8">
+               <!-- coloum 1 content -->
+                <div class="p-3 border bg-light">
+                    {% block left-content %}{% endblock left-content %}
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="p-3 border bg-light">
+                    <!-- coloum 2 content -->
+                    {% block right-content %}{% endblock right-content %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+ 
+</body>
+</html>
